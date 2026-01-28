@@ -2,7 +2,11 @@ package org.example.notification.sender;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
+@Qualifier("emailSender")
 public class EmailNotificationSender implements NotificationSender {
 
     private String fromAddress;

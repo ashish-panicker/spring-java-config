@@ -5,16 +5,14 @@ import org.example.notification.sender.NotificationSender;
 import org.example.notification.sender.SmsNotificationSender;
 import org.example.notification.service.NotificationService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 
-@Configuration // lets spring know this is a java configuration class
-@PropertySource("classpath:application.properties")
+//@Configuration // lets spring know this is a java configuration class
+//@PropertySource("classpath:application.properties")
 public class AppConfig {
 
     @Bean
+    @Scope("prototype")
     public NotificationSender smsSender(@Value("sms.gateway") String gateway) {
         var sender =  new SmsNotificationSender();
         sender.setGateway(gateway);
