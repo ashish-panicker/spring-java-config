@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="emailSender" name="emailSender"
+          init-method="init" destroy-method="destroy"
+          class="org.example.notification.sender.EmailNotificationSender">
+        <property name="fromAddress" value="no-reply@company.com" />
+    </bean>
+
+    <bean id="smsSender" name="smsSender"
+          init-method="init" destroy-method="destroy"
+          class="org.example.notification.sender.SmsNotificationSender" >
+        <property name="gateway" value="https://sms.company.com" />
+    </bean>
+
+    <bean id="notificationService" name="notificationService"
+          class="org.example.notification.service.NotificationService">
+        <constructor-arg ref="smsSender" />
+    </bean>
+</beans>
