@@ -1,5 +1,8 @@
 package org.example.notification.sender;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class EmailNotificationSender implements NotificationSender {
 
     private String fromAddress;
@@ -8,6 +11,7 @@ public class EmailNotificationSender implements NotificationSender {
         this.fromAddress = fromAddress;
     }
 
+    @PostConstruct
     public void init() {
         System.out.println("EmailNotificationSender init");
     }
@@ -23,6 +27,7 @@ public class EmailNotificationSender implements NotificationSender {
 
     }
 
+    @PreDestroy
     public void destroy() {
         System.out.println("EmailNotificationSender destroyed");
     }

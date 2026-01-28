@@ -1,5 +1,8 @@
 package org.example.notification.sender;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class SmsNotificationSender implements NotificationSender {
 
     private String gateway;
@@ -8,6 +11,7 @@ public class SmsNotificationSender implements NotificationSender {
         this.gateway = gateway;
     }
 
+    @PostConstruct
     public void init() {
         System.out.println("SmsNotification init");
     }
@@ -22,6 +26,7 @@ public class SmsNotificationSender implements NotificationSender {
                 """.formatted(gateway, to, message));
     }
 
+    @PreDestroy
     public void destroy() {
         System.out.println("SmsNotification destroy");
     }
